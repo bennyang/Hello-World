@@ -6,4 +6,4 @@ deb http://mirrors.163.com/debian/ stretch contrib main non-free
 deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stretch contrib main non-free
 deb http://mirrors.ustc.edu.cn/debian/ stretch contrib main non-free
 deb http://mirrors.xjtu.edu.cn/debian/ stretch contrib main non-free
-deb http://httpredir.debian.org/debian/ stretch main
+deb http://httpredir.debian.org/debian/ stretch main contrib non-free
