@@ -26,11 +26,11 @@ thostmduserapi.so :
 thosttraderapi.so :
 	cp CTP_API/thosttraderapi.so .
 
-.PHONY : clean clean2
+.PHONY : clean install
 
 clean :
 	rm $(objects)
 
-clean2 :
-	rm *.csv *.con 
+install :
+	mv a test/ 
 
