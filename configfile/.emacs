@@ -1,157 +1,118 @@
-;;设置字体，默认是Monospace  
-;;set-defalut-font  
-(set-default-font "Monospace")  
 
-;;custom-set-variables  
-;;set-color  
-(set-background-color "black")  ;;use black-ground  
-(set-foreground-color "white")  ;;use white-fore  
-(set-face-foreground 'region "green") ;;  
-(set-face-background 'region "blue") ;;
+;;
+'(line-number-mode 1)
+'(linum-mode 1)
 
-;;===============================================================  
-;;外观设置  
-;;===============================================================  
-;; 去掉滚动条  
-(set-scroll-bar-mode nil)  
-;;关闭开启画面  
-(setq inhibit-startup-message t)  
-  
-;;remove alert-bell  
-(mouse-wheel-mode t)  
-  
-  
-(global-linum-mode 'linum-mode)  
-;;auto show row-num  
-;;自动加载行号  
-  
-;;(partial-completion-mode 1)  
-;;use partial-completion  
-  
-(icomplete-mode 1)  
-;;use complete-completion  
+;;global-set-key
+(global-set-key [f9] `speedbar)
+(global-set-key [f10] `switch-to-prev-buffer)
+(global-set-key [f11] `switch-to-next-buffer)
+(global-set-key [f12] `read-only-mode)
 
-;; 高亮当前行  
-;;(require 'hl-line-settings)  
-  
-;; 可以把光标由方块变成一个小长条  
-;;(require 'bar-cursor)  
-;;======================================================================
 
-;;======================================================================  
-;;状态栏  
-;;======================================================================  
-;;显示时间  
-;;(display-time)  
-(display-time-mode 1);;启用时间显示设置，在minibuffer上面的那个杠上  
-(setq display-time-24hr-format t);;时间使用24小时制  
-(setq display-time-day-and-date t);;时间显示包括日期和具体时间  
-;;(setq display-time-use-mail-icon t);;时间栏旁边启用邮件设置  
-;;(setq display-time-interval 10);;时间的变化频率，单位多少来着？  
-  
-  
-;;显示列号  
-(setq column-number-mode t)  
-;;没列左边显示行号,按f3显示/隐藏行号  
-(require 'setnu)  
-(setnu-mode t)  
-;;(global-set-key[f3] (quote setnu-mode))  
-  
-;;显示标题栏 %f 缓冲区完整路径 %p 页面百分数 %l 行号  
-(setq frame-title-format "%f")
+(setq diary-file "~/org/diary.org");; 默认的日记文件 
 
-;;=======================================================================  
-;;缓冲区  
-;;=====================================================================  
-;;设定行距  
-(setq default-line-spaceing 4)  
-;;页宽  
-(setq default-fill-column 60)  
-;;缺省模式 text-mode  
-;;(setq default-major-mode 'text-mode)  
-;;设置删除记录  
-(setq kill-ring-max 200)  
-;;以空行结束  
-;;(setq require-final-newline t)  
-;;开启语法高亮。  
-(global-font-lock-mode 1)  
-;;高亮显示区域选择  
-(transient-mark-mode t)  
-;;页面平滑滚动,scroll-margin 3 靠近屏幕边沿3行开始滚动，正好可以看到上下文  
-;;(setq scroll-margin 3 scroll-consrvatively 10000)  
-;;高亮显示成对括号  
-(show-paren-mode t)  
-(setq show-paren-style 'parentheses)  
-;;鼠标指针避光标  
-(mouse-avoidance-mode 'animate)  
-;;粘贴于光标处,而不是鼠标指针处  
-(setq mouse-yank-at-point t)
+;;emacs-eim-input-method
+(add-to-list 'load-path "~/.emacs.d/site-lisp/eim")
+(autoload 'eim-use-package "eim" "Another emacs input method")
+;; Tooltip 暂时还不好用
+;;(setq eim-use-tooltip nil)
 
-;;=======================================================================  
-;;回显区  
-;;=======================================================================  
-;;闪屏报警  
-(setq visible-bell t)  
-;;使用y or n提问  
-(fset 'yes-or-no-p 'y-or-n-p)  
-;;锁定行高  
-(setq resize-mini-windows nil)  
-;;递归minibuffer  
-(setq enable-recursive-minibuffers t)  
-;;当使用M-x COMMAND后，过1秒显示该COMMAND绑定的键  
-;;(setq suggest-key-bindings-1)   ;;默认？  
-  
-;;======================================================================  
-;;编辑器的设定  
-;;======================================================================  
-;;不产生备份文件  
-(setq make-backup-files nil)  
-;;不生成临时文件  
-(setq-default make-backup-files nil)  
-;;只渲染当前屏幕语法高亮，加快显示速度  
-(setq lazy-lock-defer-on-scrolling t)  
-;;(setq font-lock-support-mode 'lazy-lock-mode)  
-(setq font-lock-maximum-decoration t)  
-;;将错误信息显示在回显区  
-(condition-case err  
-    (progn  
-      (require 'xxx))  
-  (error  
-   (message "Can't load xxx-mode %s" (cdr err))))  
-;;使用X剪贴板  
-(setq x-select-enable-clipboard t)  
-;;设定剪贴板的内容格式 适应Firefox  
-(set-clipboard-coding-system 'ctext)  
-  
-;;设置TAB宽度为4  
-(setq default-tab-width 4)   
-;;以下设置缩进  
-;;用tab缩进  
-(setq indent-tabs-mode t)  
-(setq c-indent-level 4)  
-(setq c-continued-statement-offset 4)  
-(setq c-brace-offset -4)  
-(setq c-argdecl-indent 4)  
-(setq c-label-offset -4)  
-(setq c-basic-offset 4)  
-(global-set-key "\C-m" 'reindent-then-newline-and-indent)
+(register-input-method "eim-wb" "euc-cn" 'eim-use-package "五笔" "汉字五笔输入法" "wb.txt")
+;;(register-input-method "eim-py" "euc-cn" 'eim-use-package "拼音" "汉字拼音输入法""py.txt"
+;;设置eim－wubi为emacs默认输入法
+;;(setq default-input-method "eim-wb")
+
+
+;;在org-mode中自动换行
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil))) 
+
+(setq require-final-newline t)
+;; 自动的在文件末增加一新行
+
+(setq frame-title-format "emacs@%ben.com")
+;; 在标题栏显示 buffer 的名字,而不是 emacs@wangyin.com 这样没用的提示。
+(setq uniquify-buffer-name-style 'forward);; 好像没起作用
+;; 当有两个文件名相同的缓冲时,使用前缀的目录名做 buffer 名字,不用原来的 foobar<?> 形式。
+(setq auto-image-file-mode t)
+;; 让 Emacs 可以直接打开和显示图片。
+;(auto-compression-mode 1)
+; 打开压缩文件时自动解压缩。
+(setq global-font-lock-mode t)
+;; 进行语法加亮。
+(setq-default kill-whole-line t)
+;; 在行首 C-k 时,同时删除该行。
+(add-hook 'comint-output-filter-functions
+'comint-watch-for-password-prompt)
+;; 当你在 shell 、 telnet 、 w3m 等模式下时,必然碰到过要输入密码的情况 , 此时加密显出你的密码
+
+;;ido 的配置 , 这个可以使你在用 C-x C-f 打开文件的时候在后面有提示 ;
+;; 这里是直接打开了 ido 的支持,在 emacs23 中这个是自带的 .
+(ido-mode t)
+(setq ido-save-directory-list-file nil)
+;;ido 模式中不保存目录列表 , 解决退出 Emacs 时 ido 要询问编码的问题。
+(setq visible-bell t)
+;; 关闭烦人的出错时的提示声
+(setq inhibit-startup-message t)
+;; 关闭 emacs 启动时的画面
+(setq gnus-inhibit-startup-message t)
+;; 关闭 gnus 启动时的画面
+(fset 'yes-or-no-p 'y-or-n-p)
+;; 改变 Emacs 固执的要你回答 yes 的行为。按 y 或空格键表示 yes , n 表示 no 。
+(setq font-lock-maximum-decoration t)
+(setq font-lock-global-modes '(not shell-mode text-mode))
+(setq font-lock-verbose t)
+(setq font-lock-maximum-size '((t . 1048576) (vm-mode . 5250000)))
+;; 语法高亮。除 shell-mode 和 text-mode 之外的模式中使用语法高亮。
+
+;;------------ 显示时间设置 ------------------------------
+(display-time-mode 1);; 启用时间显示设置,在 minibuffer 上面的那个杠上
+(setq display-time-24hr-format t);; 时间使用 24 小时制
+(setq display-time-day-and-date t);; 时间显示包括日期和具体时间
+(setq display-time-use-mail-icon t);; 时间栏旁边启用邮件设置
+(setq display-time-interval 10);; 时间的变化频率,单位多少来着?
+;;------------ 显示时间设置结束 ---------------------------
+
+;; 语法高亮
+(global-font-lock-mode t)
+;; 以 y/n 代表 yes/no
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; 显示时间,格式如下
+(display-time-mode 1)
+(setq display-time-24hr-format t)
+(setq display-time-day-and-date t)(transient-mark-mode t)
+;; 支持 emacs 和外部程序的粘贴
+(setq x-select-enable-clipboard t)
+;; 在标题栏提示你目前在什么位置
+(setq frame-title-format "%b")
+
+;; 一打开就起用 text 模式。
+(setq default-major-mode 'text-mode)
+
+;; all backups goto ~/.backups instead in the current directory
+(setq backup-directory-alist (quote (("." . "~/.backups"))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(custom-enabled-themes (quote (manoj-dark)))
+ '(default-input-method "british")
  '(display-time-mode t)
- '(show-paren-mode t)
- '(spice-output-local "Gnucap")
- '(spice-simulator "Gnucap")
- '(spice-waveform-viewer "Gwave")
- '(tool-bar-mode nil)
- '(menu-bar-mode nil))
+ '(line-number-mode nil)
+ '(menu-bar-mode nil)
+ '(send-mail-function (quote smtpmail-send-it))
+ '(size-indication-mode t)
+ '(smtpmail-smtp-server "smtp.163.com")
+ '(smtpmail-smtp-service 25)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
