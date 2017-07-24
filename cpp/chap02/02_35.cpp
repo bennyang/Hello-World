@@ -8,7 +8,6 @@ int main()
   auto *p = &i;      // * const int
   const auto j2 = i, &k2 = i; // j2 const int, k2 const int
   auto &l = i;
-  const auto &m = i;
-
+  const auto &m = i;  
   return 0;
 }

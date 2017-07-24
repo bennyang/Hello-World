@@ -1,7 +1,18 @@
 #include <iostream>
+#include "Sales_item.h"
 using namespace std;
+
 int main()
 {
+  /*
+  typedef double wages;
+  typedef wages base, *p0;
+  using SI = Sales_item;
+  SI val1, val2;
+  auto tiem = val1 + val2;
+  */
+  
+
   int i = 0, &r = i; // int
   auto a = r; //　int
 
@@ -23,9 +34,10 @@ int main()
   a = 42; // int
   b = 42; // int
   c = 42; // int
-  //e = &42;// * int
+  e = &i;// * int
   //f = 42; // const int 
   //g = 42; // referent to const int
+
 
   return 0;
 }

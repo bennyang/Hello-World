@@ -14,6 +14,10 @@ int main()
   const int sz = cnt;//ok
   ++cnt;      //ok
   //++sz;       //const int sz的值初始化之后，不可改变，++sz nok
+
+  double deval = 3.14;
+  const int &ri = deval;
+  cout << deval << '\t' << ri << endl;
   
   return 0;
 }
